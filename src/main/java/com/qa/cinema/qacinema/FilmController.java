@@ -1,5 +1,6 @@
 package com.qa.cinema.qacinema;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +25,10 @@ public class FilmController {
 	
 	@GetMapping("/films")
 	public List<Film> getAllFilms() {
+//		List<Film> filmList = new ArrayList<Film>();
+//		for(Film film : this.filmRepository.findAll()) {
+//			filmList.add(film);
+//		}
 		return filmRepository.findAll();
 	}
 	

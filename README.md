@@ -32,7 +32,7 @@ docker run --name demo-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=d
 6. Run demo application in Docker container and link to demo-mysql:
 
 ~~~
-docker run -p 8080:8080 --name demo-app --link demo-mysql:mysql -d jiwhiz/spring-boot-docker-mysql
+docker run -p 8080:8080 --name demo-app --link demo-mysql:mysql -d cinema/qa-cinema
 ~~~
 
 You can check the log by
@@ -48,6 +48,27 @@ NOTE: This may not work first time around. Run steps 3 onwards again in a new te
 
 To stop/remove all of Docker containers:
 
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
+~~~
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+
+READ ME.
+
+Run the following:
+
+From the directory that contains the POM file:
+
+mvn clean package docker:build
+
+Then run:
+
+docker run --name demo-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=demo -e MYSQL_USER=demo_user -e MYSQL_PASSWORD=demo_pass -d mysql:5.6
+
+docker logs demo-mysql (ensure mysql server is up)
+
+docker run -p 8080:8080 --name cinema-app --link demo-mysql:mysql -d cinema/qa-cinema
+
+docker logs trainer-app (ensure app is up by accessing http://localhost:8080)
+
+~~~
 
