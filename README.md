@@ -3,10 +3,6 @@
 ## How to run it with Docker
 Assume you already have Docker installed. See https://docs.docker.com/installation/.
 
-~~~
-set DOCKER_HOST=unix:///private/var/tmp/docker.sock
-~~~
-
 TODO: change README.md for QA Cinemas
 For company computers:
 
@@ -21,7 +17,11 @@ mvn install
 mvn clean package docker:build
 ~~~
 
-4. VMBox should have a virtual machine running now. Right click it and go to settings->network->port forwarding. Make a new rule called 'demo-app', give both its Host Port and Guest Port the value 8080.
+4. VMBox should have a virtual machine running now. Right click it and go to settings->network->port forwarding. Make a new rule called 'demo-app', give both its Host Port and Guest Port the value 8080. Also run:
+
+~~~
+set DOCKER_HOST=unix:///private/var/tmp/docker.sock
+~~~
 
 5. Run the command to launch MySQL in Docker. 
 
